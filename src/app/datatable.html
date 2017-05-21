@@ -1,0 +1,65 @@
+<div class="data-table-container">
+    <div class="control-panel">
+        <div class='search-panel'>
+            <label>
+                <i class='fa fa-search' aria-hidden='true'></i>
+                <input type="search" autocomplete="off" class="search-field" [(ngModel)]="searchString"/>
+            </label>
+            <button class="search-panel-button" (click)="onSearch()">Найти</button>
+            <button class="search-panel-button" (click)="onReset()">Сбросить</button>
+        </div>
+
+        <div class="pagination-container">
+            <button class="pagination-button"
+                    title="Первая страница"
+                    [disabled]="currPage <= 0" (click)="setCurrPage(0)">
+                &laquo;
+            </button>
+            <button class="pagination-button"
+                    title="Предыдущая страница"
+                    [disabled]="currPage <= 0"
+                    (click)="setCurrPage(currPage - 1)">
+                &lsaquo;
+            </button>
+            <span class="pagination-count">{{currPage + 1}} из {{totalPages}}</span>
+            <button class="pagination-button"
+                    title="Следующая страница"
+                    [disabled]="currPage >= totalPages - 1"
+                    (click)="setCurrPage(currPage + 1)">
+                &rsaquo;
+            </button>
+            <button class="pagination-button"
+                    title="Последняя страница"
+                    [disabled]="currPage >= totalPages - 1"
+                    (click)="setCurrPage(totalPages - 1)">
+                &raquo;
+            </button>
+        </div>
+    </div>
+
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th class="data-table-head-column"
+                *ngFor="let column of ['id', 'firstName', 'lastName', 'email', 'phone']"
+                (click)="onSort(column)">
+                {{column}} <i class="fa fa-{{sortSignClass(column)}}" aria-hidden="true"></i>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let person of persons">
+            <td class="data-table-column">{{person.id}}</td>
+            <td class="data-table-column"
+                *ngFor="let column of ['firstName', 'lastName', 'email', 'phone']">
+                <div class="data-table-cell"
+                     contenteditable="true"
+                     data-tip="&quot;Enter&quot; сохранить, &quot;Esc&quot; отмена"
+                     (click)="setEditedField(person.id, column, person[column])"
+                     (keydown)="onEditedKeyDown($event)"
+                     (blur)="onExitCell($event)">{{person[column]}}</div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,12 @@
+@font-face
+{
+    font-family: 'Graphik Web';
+    src: url(https://d3ptyyxy2at9ui.cloudfront.net/cc4834ba2b1242862bf8d016d04fe352.woff) format('woff');
+}
+
+html,
+body
+{
+    font: 300 14px 'Graphik Web', Arial, sans-serif;
+    color: #4c4c4c;
+}

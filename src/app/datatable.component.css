@@ -1,0 +1,178 @@
+.data-table-container
+{
+    width: 875px;
+    margin: 100px auto;
+}
+
+.search-panel,
+.data-table-column
+{
+    position: relative;
+}
+
+.search-field
+{
+    width: 240px;
+    height: 32px;
+    padding-right: 15px;
+    padding-left: 28px;
+    -webkit-appearance: none;
+}
+
+.search-field,
+.pagination-button,
+.data-table-head-column,
+.data-table-column
+{
+    border: 1px solid #e2deee;
+}
+
+.search-field,
+.search-panel-button,
+.pagination-button
+{
+    border-radius: 3px;
+    outline: none;
+}
+
+.search-panel-button
+{
+    font-size: 10px;
+    line-height: 30px;
+    height: 32px;
+    padding: 0 14px;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background-color: #4cc8f1;
+}
+
+.search-panel-button,
+.pagination-button
+{
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.search-panel-button:hover
+{
+    background-color: #45c0e8;
+}
+
+.data-table
+{
+    width: 100%;
+    margin: 15px 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.data-table-head-column,
+.pagination-button
+{
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.data-table-head-column,
+.data-table-column
+{
+    padding: 10px;
+}
+
+.data-table-cell
+{
+    outline: none;
+    word-break: break-all;
+    height: 100%;
+    width: 100%;
+}
+
+.data-table-cell:before,
+.data-table-cell:after
+{
+    position: absolute;
+    z-index: 10;
+    display: none;
+}
+
+.data-table-cell:before
+{
+    bottom: 0;
+    content: '';
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #1a1a1a;
+    border-left: 5px solid transparent;
+}
+
+.data-table-cell:after
+{
+    font-size: 10px;
+    line-height: 18px;
+    bottom: -28px;
+    left: 0;
+    height: 18px;
+    padding: 5px 8px;
+    content: attr(data-tip);
+    color: #fff;
+    border-radius: 3px;
+    background: #1a1a1a;
+}
+
+.data-table-cell:focus:before,
+.data-table-cell:focus:after
+{
+    display: block;
+}
+
+.pagination-container,
+.search-panel
+{
+    display: inline-block;
+}
+
+.pagination-container
+{
+    text-align: right;
+    float: right;
+}
+
+.pagination-button
+{
+    width: 32px;
+    height: 32px;
+    background: none;
+}
+
+.pagination-button:disabled
+{
+    cursor: default;
+}
+
+.pagination-count
+{
+    padding: 0 8px;
+}
+
+.fa-search
+{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.fa-sort
+{
+    color: #e2deee;
+}
+
+.fa-search,
+.fa-sort-asc,
+.fa-sort-desc,
+.data-table-head-column:hover > .fa-sort
+{
+    color: #999;
+}

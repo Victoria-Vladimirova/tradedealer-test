@@ -1,4 +1,4 @@
-export const PERSONS = [
+const PERSONS = [
     {
         "phone": "+7 (894) 496-2353",
         "email": "rose.hester@scenty.com",
@@ -74,7 +74,7 @@ export const PERSONS = [
         "email": "belinda.church@exoplode.ca",
         "lastName": "Church",
         "firstName": "Belinda",
-        "id": 61
+        "id": 125
     },
     {
         "phone": "+7 (898) 484-3259",
@@ -88,7 +88,7 @@ export const PERSONS = [
         "email": "etta.kent@ultrasure.com",
         "lastName": "Kent",
         "firstName": "Etta",
-        "id": 99
+        "id": 100
     },
     {
         "phone": "+7 (989) 586-2505",
@@ -123,14 +123,14 @@ export const PERSONS = [
         "email": "myrna.woodard@crustatia.biz",
         "lastName": "Woodard",
         "firstName": "Myrna",
-        "id": 44
+        "id": 103
     },
     {
         "phone": "+7 (800) 416-3065",
         "email": "coffey.kirkland@digigene.info",
         "lastName": "Kirkland",
         "firstName": "Coffey",
-        "id": 70
+        "id": 119
     },
     {
         "phone": "+7 (827) 561-2920",
@@ -158,7 +158,7 @@ export const PERSONS = [
         "email": "cannon.johnston@liquicom.ca",
         "lastName": "Johnston",
         "firstName": "Cannon",
-        "id": 99
+        "id": 101
     },
     {
         "phone": "+7 (896) 453-2717",
@@ -179,7 +179,7 @@ export const PERSONS = [
         "email": "lewis.moody@myopium.io",
         "lastName": "Moody",
         "firstName": "Lewis",
-        "id": 36
+        "id": 37
     },
     {
         "phone": "+7 (965) 503-2884",
@@ -196,3 +196,5 @@ export const PERSONS = [
         "id": 87
     }
 ];
+
+export default PERSONS;

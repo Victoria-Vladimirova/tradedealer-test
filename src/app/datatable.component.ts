@@ -23,14 +23,15 @@ export class DataTableComponent {
 
     currPage: number = 0;
 
-    editedField: any = {
-        id: null,
-        fieldName: null,
-        fieldValue: null
-    };
-
-    constructor() {
-        this.updatePersons();
+    constructor(private personService: PersonService) {
+        personService.persons.subscribe(persons => this.persons = persons);
+        personService.totalCount.subscribe(totalCount => {
+            this.totalPages = Math.ceil(totalCount / PAGESIZE);
+            if (this.totalPages === 0) {
+                this.currPage = -1;
+            }
+        });
+        this.updateData();
     }
 
     onSort(column: string): void {
@@ -41,39 +42,18 @@ export class DataTableComponent {
             this.sort.order = this.sort.order === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC;
         }
 
-        this.updatePersons();
+        this.updateData();
     }
 
     onSearch(): void {
         this.currPage = 0;
-        this.updatePersons();
+        this.updateData();
     }
 
     onReset(): void {
         this.searchString = null;
         this.currPage = 0;
-        this.updatePersons();
-    }
-
-    onEditedKeyDown(event: KeyboardEvent): void {
-        const cell: HTMLElement = <HTMLElement> event.target;
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            PersonService.updatePerson(this.editedField.id, this.editedField.fieldName, cell.innerText);
-            this.editedField = {};
-            cell.blur();
-        } else if (event.keyCode === 27) {
-            event.preventDefault();
-            cell.blur();
-        }
-    }
-
-    onExitCell(event: Event): void {
-        const cell: HTMLElement = <HTMLElement> event.target;
-        if (this.editedField.id) {
-            cell.innerText = this.editedField.fieldValue;
-            this.editedField = {};
-        }
+        this.updateData();
     }
 
     sortSignClass(column: string): string {
@@ -88,20 +68,19 @@ export class DataTableComponent {
         }
     }
 
-    updatePersons(): void {
-        this.persons = PersonService.getPersons(this.sort, this.searchString, this.currPage * PAGESIZE, PAGESIZE);
-        this.totalPages = Math.ceil(PersonService.countPersons(this.searchString) / PAGESIZE);
-        if (this.totalPages === 0) {
-            this.currPage = -1;
-        }
+    updateData(): void {
+        this.personService.fetchPersons(this.sort, this.searchString, this.currPage * PAGESIZE, PAGESIZE);
+        this.personService.countPersons(this.searchString);
     }
 
     setCurrPage(page: number): void {
         this.currPage = page;
-        this.updatePersons();
+        this.updateData();
     }
 
-    setEditedField(id: number, fieldName: string, fieldValue: string): void {
-        this.editedField = {id, fieldName, fieldValue};
+    onCellChange(data: any): void {
+        this.personService.updatePerson(data.id, data.fieldName, data.fieldValue);
+        this.updateData();
     }
+
 }

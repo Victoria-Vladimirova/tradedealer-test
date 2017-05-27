@@ -52,12 +52,12 @@
             <td class="data-table-column">{{person.id}}</td>
             <td class="data-table-column"
                 *ngFor="let column of ['firstName', 'lastName', 'email', 'phone']">
-                <div class="data-table-cell"
+                <div [data-id]="person.id" [data-field-name]="column" class="data-table-cell"
                      contenteditable="true"
                      data-tip="&quot;Enter&quot; сохранить, &quot;Esc&quot; отмена"
-                     (click)="setEditedField(person.id, column, person[column])"
-                     (keydown)="onEditedKeyDown($event)"
-                     (blur)="onExitCell($event)">{{person[column]}}</div>
+                     [(contenteditableModel)]="person[column]"
+                     (contenteditableModelChange)="onCellChange($event)">
+                </div>
             </td>
         </tr>
         </tbody>
